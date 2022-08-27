@@ -115,6 +115,24 @@ public class RadioTest {
         int actual = radio.getCurrentVolume();
         assertEquals(expected, actual);
     }
+    
+     @Test
+    public void shouldNotSetVolumeUnderTheUpperBound() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(11);
+        int expected = 10;
+        int actual = radio.getCurrentVolume();
+        assertEquals(expected, actual);
+    }
+    
+     @Test // If there button "-" is avaliable
+    public void shouldNotSetVolumeUnderTheLowerBound() {
+        Radio radio = new Radio();
+        radio.setCurrentVolume(-1);
+        int expected = 10;
+        int actual = radio.getCurrentVolume();
+        assertEquals(expected, actual);
+    }
 
     @Test
     public void shouldIncreaseVolumeIfNotLast() {
